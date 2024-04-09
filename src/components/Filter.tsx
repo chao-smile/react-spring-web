@@ -2,7 +2,8 @@ import { Radio } from "antd";
 import { useStore } from "@/hooks";
 
 const Filter = () => {
-  const { filter, setFilter } = useStore();
+  const filter = useStore.use.filter();
+  const setFilter = useStore.use.setFilter();
   return (
     <Radio.Group onChange={(e) => setFilter(e.target.value)} value={filter}>
       <Radio value="all">All</Radio>

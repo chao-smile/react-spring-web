@@ -3,7 +3,7 @@ import { Filter, Filtered } from "@/components";
 import { v4 } from "uuid";
 
 function App() {
-  const { setTodos } = useStore();
+  const setTodos = useStore.use.setTodos();
 
   const add = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

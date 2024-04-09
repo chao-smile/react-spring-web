@@ -3,7 +3,7 @@ import { useStore } from "@/hooks";
 import { CloseOutlined } from "@ant-design/icons";
 
 const TodoItem = ({ item }: { item: ToDo }) => {
-  const { setTodos } = useStore();
+  const setTodos = useStore.use.setTodos();
   const { title, completed, id } = item;
 
   const toggleCompleted = () =>

@@ -3,7 +3,8 @@ import { useStore } from "@/hooks";
 import TodoItem from "./TodoItem";
 
 const Filtered = () => {
-  const { todos, filter } = useStore();
+  const todos = useStore.use.todos();
+  const filter = useStore.use.filter();
   const filterTodo = todos.filter((todo) => {
     if (filter === "all") return true;
     if (filter === "completed") return todo.completed;

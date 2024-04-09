@@ -5,7 +5,7 @@ export type Filter = "all" | "completed" | "incompleted";
 export type ToDo = {
   title: string;
   completed: boolean;
-  id: number;
+  id: string;
 };
 
 export type StorePropsType = {

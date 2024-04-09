@@ -1,30 +1,43 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + Antd + React-Spring + zustand + Tailwind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 一个 ToDoList 练习项目
 
-Currently, two official plugins are available:
+> 关于为什么数据状态管理没有选择 use-context-selector ？
+> 因为 use-context-selector 会导致组件的重新渲染，而 zustand 不会。这很迷惑，在我看来，use-context-selector 本身就是为了处理 re-render 的问题，但是它却没有完全避免组件的 re-render，这就很奇怪了。
+> 测试链接 [use-context-selector](https://codesandbox.io/p/sandbox/use-context-selector-forked-4njfvd?layout=%257B%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522rootPanelGroup%2522%253A%257B%2522direction%2522%253A%2522horizontal%2522%252C%2522contentType%2522%253A%2522UNKNOWN%2522%252C%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522id%2522%253A%2522ROOT_LAYOUT%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522UNKNOWN%2522%252C%2522direction%2522%253A%2522vertical%2522%252C%2522id%2522%253A%2522clulbh48r00073j6hju48f708%2522%252C%2522sizes%2522%253A%255B100%252C0%255D%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522EDITOR%2522%252C%2522direction%2522%253A%2522horizontal%2522%252C%2522id%2522%253A%2522EDITOR%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522EDITOR%2522%252C%2522id%2522%253A%2522clulbh48r00033j6h5sd09ahs%2522%257D%255D%257D%252C%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522SHELLS%2522%252C%2522direction%2522%253A%2522horizontal%2522%252C%2522id%2522%253A%2522SHELLS%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522SHELLS%2522%252C%2522id%2522%253A%2522clulbh48r00043j6hyn7pz4tg%2522%257D%255D%252C%2522sizes%2522%253A%255B100%255D%257D%255D%257D%252C%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522DEVTOOLS%2522%252C%2522direction%2522%253A%2522vertical%2522%252C%2522id%2522%253A%2522DEVTOOLS%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522DEVTOOLS%2522%252C%2522id%2522%253A%2522clulbh48r00063j6hw1c4iad1%2522%257D%255D%252C%2522sizes%2522%253A%255B100%255D%257D%255D%252C%2522sizes%2522%253A%255B50%252C50%255D%257D%252C%2522tabbedPanels%2522%253A%257B%2522clulbh48r00033j6h5sd09ahs%2522%253A%257B%2522id%2522%253A%2522clulbh48r00033j6h5sd09ahs%2522%252C%2522tabs%2522%253A%255B%257B%2522id%2522%253A%2522clurqp814005y3j6fuadisbfk%2522%252C%2522mode%2522%253A%2522permanent%2522%252C%2522type%2522%253A%2522FILE%2522%252C%2522initialSelections%2522%253A%255B%257B%2522startLineNumber%2522%253A14%252C%2522startColumn%2522%253A71%252C%2522endLineNumber%2522%253A14%252C%2522endColumn%2522%253A71%257D%255D%252C%2522filepath%2522%253A%2522%252Fsrc%252FApp.js%2522%252C%2522state%2522%253A%2522IDLE%2522%257D%255D%252C%2522activeTabId%2522%253A%2522clurqp814005y3j6fuadisbfk%2522%257D%252C%2522clulbh48r00063j6hw1c4iad1%2522%253A%257B%2522tabs%2522%253A%255B%257B%2522id%2522%253A%2522clulbh48r00053j6hg1jhvvma%2522%252C%2522mode%2522%253A%2522permanent%2522%252C%2522type%2522%253A%2522UNASSIGNED_PORT%2522%252C%2522port%2522%253A0%252C%2522path%2522%253A%2522%252F%2522%257D%255D%252C%2522id%2522%253A%2522clulbh48r00063j6hw1c4iad1%2522%252C%2522activeTabId%2522%253A%2522clulbh48r00053j6hg1jhvvma%2522%257D%252C%2522clulbh48r00043j6hyn7pz4tg%2522%253A%257B%2522tabs%2522%253A%255B%255D%252C%2522id%2522%253A%2522clulbh48r00043j6hyn7pz4tg%2522%257D%257D%252C%2522showDevtools%2522%253Atrue%252C%2522showShells%2522%253Afalse%252C%2522showSidebar%2522%253Atrue%252C%2522sidebarPanelSize%2522%253A15%257D)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 项目启动
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+# 安装依赖
+yarn
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+```bash
+# 启动项目
+yarn dev
+```
+
+```bash
+# 打包项目
+yarn build
+```
+
+## 项目结构
+
+```
+.
+├── public
+├── src
+│   ├── components
+│   ├── hooks
+│   ├── utils
+│   ├── App.tsx
+│   ├── main.tsx
+├── .gitignore
+├── package.json
+├── README.md
+├── tsconfig.json
+├── vite.config.ts
+└── yarn.lock
+```

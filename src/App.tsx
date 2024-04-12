@@ -1,5 +1,5 @@
 import { useStore } from "@/hooks";
-import { Filter, Filtered } from "@/components";
+import { Filter, Filtered, FetchTest } from "@/components";
 import { v4 } from "uuid";
 
 function App() {
@@ -13,11 +13,20 @@ function App() {
   };
 
   return (
-    <form onSubmit={add}>
-      <Filter />
-      <input name="inputTitle" placeholder="Type ..." />
-      <Filtered />
-    </form>
+    <div style={{ display: "flex" }}>
+      <div style={{ flex: "auto" }}>
+        <h1>Todo List</h1>
+        <form onSubmit={add}>
+          <Filter />
+          <input name="inputTitle" placeholder="Type ..." />
+          <Filtered />
+        </form>
+      </div>
+      <div style={{ flex: "auto" }}>
+        <h1>Test</h1>
+        <FetchTest />
+      </div>
+    </div>
   );
 }
 

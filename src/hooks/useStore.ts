@@ -14,6 +14,10 @@ export type StorePropsType = {
   todos: ToDo[];
   setFilter: (filter: Filter) => void;
   setTodos: (fn: (todos: ToDo[]) => ToDo[]) => void;
+
+  testLoading: boolean;
+  testData: ToDo[];
+  fetchTest: () => Promise<void>;
 };
 
 export const useStoreBase = create<StorePropsType>((set) => ({
@@ -25,6 +29,20 @@ export const useStoreBase = create<StorePropsType>((set) => ({
   setTodos(fn) {
     set((prev) => ({ todos: fn(prev.todos) }));
   },
+
+  testLoading: false,
+  testData: [],
+  fetchTest: async () => {
+    try {
+      set({ testLoading: true });
+      const res = await fetch(`https://jsonplaceholder.typicode.com/todos`);
+      const testData = await res.json();
+      set({ testLoading: false });
+      set({ testData });
+    } catch {
+      set({ testLoading: false });
+    }
+  },
 }));
 
 export const useStore = createSelectors(useStoreBase);
@@ -34,6 +52,8 @@ export const useStore = createSelectors(useStoreBase);
 // 新获取
 // const todos = useStore.use.todos()
 // const setTodos = useStore.use.setTodos()
+
+// 对于 re-render 问题，官方还推荐了一种方式，便是使用 useShallow 官方主推，但写着不如 createSelectors 方便
 
 // 对于深层结构的数据，可以使用 immer.js 来处理，避免复杂嵌套
 // 示例

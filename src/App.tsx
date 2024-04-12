@@ -13,8 +13,8 @@ function App() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ flex: "auto" }}>
+    <div className="flex">
+      <div className="flex-auto">
         <h1>Todo List</h1>
         <form onSubmit={add}>
           <Filter />
@@ -22,7 +22,7 @@ function App() {
           <Filtered />
         </form>
       </div>
-      <div style={{ flex: "auto" }}>
+      <div className="flex-auto">
         <h1>Test</h1>
         <FetchTest />
       </div>

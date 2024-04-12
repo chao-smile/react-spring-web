@@ -15,7 +15,7 @@ const FetchTest = () => {
 
   return (
     <div>
-      <ul style={{ maxHeight: "30vh", overflowY: "auto" }}>
+      <ul className="max-h-[30vh] overflow-y-auto">
         {transitions((style, item) => (
           <a.li style={style}>{item.title}</a.li>
         ))}

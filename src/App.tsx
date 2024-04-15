@@ -1,5 +1,5 @@
 import { useStore } from "@/hooks";
-import { Filter, Filtered, FetchTest, NestedObjectTest } from "@/components";
+import { Filter, Filtered, FetchTest, NestedObjectTest, WithOut } from "@/components";
 import { v4 } from "uuid";
 
 function App() {
@@ -26,6 +26,9 @@ function App() {
       </div>
       <div className="flex-auto">
         <NestedObjectTest />
+      </div>
+      <div className="flex-auto">
+        <WithOut />
       </div>
       <div className="flex-auto">
         <h1>Test</h1>

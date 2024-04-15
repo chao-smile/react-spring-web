@@ -30,6 +30,8 @@ export type StorePropsType = {
     };
   };
   updateNestedObject: () => void;
+
+  without: number;
 };
 
 export const useStoreBase = create<StorePropsType>((set) => ({
@@ -72,7 +74,12 @@ export const useStoreBase = create<StorePropsType>((set) => ({
       }),
     );
   },
+
+  // 在存储外部的模块级别定义操作
+  without: 0,
 }));
+
+export const setWithout = () => useStoreBase.setState((state) => ({ without: state.without + 1 }));
 
 export const useStore = createSelectors(useStoreBase);
 
@@ -83,6 +90,17 @@ export const useStore = createSelectors(useStoreBase);
 // const setTodos = useStore.use.setTodos()
 
 // 对于 re-render 问题，官方还推荐了一种方式，便是使用 useShallow 官方主推，但写着不如 createSelectors 方便
+
+// 在存储外部的模块级别定义操作 => 有助于代码拆分 使用 create 实例以及 setState 实现
+// export const useBoundStore = create(() => ({
+//   count: 0,
+//   text: 'hello',
+// }))
+
+// export const inc = () =>
+//   useBoundStore.setState((state) => ({ count: state.count + 1 }))
+
+// export const setText = (text) => useBoundStore.setState({ text })
 
 // 对于深层结构的数据，可以使用 immer.js 来处理，避免复杂嵌套
 // 示例

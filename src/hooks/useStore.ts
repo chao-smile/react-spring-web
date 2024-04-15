@@ -134,3 +134,55 @@ export const useStore = createSelectors(useStoreBase);
 //     });
 //   },
 // }));
+
+// 关于 set 与 map 类型的数据
+// import { create } from 'zustand'
+
+// const useFooBar = create(() => ({ foo: new Map(), bar: new Set() }))
+
+// function doSomething() {
+//  // doing something...
+
+// // 如果要更新某个使用 `useFooBar` 的 React 组件，必须调用 setState
+// // 让 React 知道发生了更新。
+// // 根据 React 的最佳实践，在更新它们时，您应该创建一个新的 Map/Set：
+//   useFooBar.setState((prev) => ({
+//     foo: new Map(prev.foo).set('newKey', 'newValue'),
+//     bar: new Set(prev.bar).add('newKey'),
+//   }))
+// }
+
+// 初始化数据 ，使用 create 函数的 set 以及 get 方法进行绑定，最后 set initial state
+// import { create } from 'zustand'
+
+// // define types for state values and actions separately
+// type State = {
+//   salmon: number
+//   tuna: number
+// }
+
+// type Actions = {
+//   addSalmon: (qty: number) => void
+//   addTuna: (qty: number) => void
+//   reset: () => void
+// }
+
+// // define the initial state
+// const initialState: State = {
+//   salmon: 0,
+//   tuna: 0,
+// }
+
+// // create store
+// const useSlice = create<State & Actions>()((set, get) => ({
+//   ...initialState,
+//   addSalmon: (qty: number) => {
+//     set({ salmon: get().salmon + qty })
+//   },
+//   addTuna: (qty: number) => {
+//     set({ tuna: get().tuna + qty })
+//   },
+//   reset: () => {
+//     set(initialState)
+//   },
+// }))

@@ -6,6 +6,8 @@ const FetchTest = () => {
   const testData = useStore.use.testData();
   const testLoading = useStore.use.testLoading();
 
+  console.log("fetchTest:触发");
+
   const transitions = useTransition(testData, {
     keys: (todo) => todo.id,
     from: { opacity: 0, height: 0 },

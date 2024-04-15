@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { createSelectors } from "@/utils";
+import { produce } from "immer";
 
 export type Filter = "all" | "completed" | "incompleted";
 
@@ -18,6 +19,17 @@ export type StorePropsType = {
   testLoading: boolean;
   testData: ToDo[];
   fetchTest: () => Promise<void>;
+
+  nestedObject: {
+    deep: {
+      nested: {
+        obj: {
+          count: number;
+        };
+      };
+    };
+  };
+  updateNestedObject: () => void;
 };
 
 export const useStoreBase = create<StorePropsType>((set) => ({
@@ -42,6 +54,23 @@ export const useStoreBase = create<StorePropsType>((set) => ({
     } catch {
       set({ testLoading: false });
     }
+  },
+
+  nestedObject: {
+    deep: {
+      nested: {
+        obj: {
+          count: 0,
+        },
+      },
+    },
+  },
+  updateNestedObject() {
+    set(
+      produce((state) => {
+        ++state.nestedObject.deep.nested.obj.count;
+      }),
+    );
   },
 }));
 

@@ -1,5 +1,5 @@
 import { useStore } from "@/hooks";
-import { Filter, Filtered, FetchTest } from "@/components";
+import { Filter, Filtered, FetchTest, NestedObjectTest } from "@/components";
 import { v4 } from "uuid";
 
 function App() {
@@ -12,6 +12,8 @@ function App() {
     setTodos((prevTodos) => [...prevTodos, { title, completed: false, id: v4() }]);
   };
 
+  console.log("App:触发");
+
   return (
     <div className="flex">
       <div className="flex-auto">
@@ -21,6 +23,9 @@ function App() {
           <input name="inputTitle" placeholder="Type ..." />
           <Filtered />
         </form>
+      </div>
+      <div className="flex-auto">
+        <NestedObjectTest />
       </div>
       <div className="flex-auto">
         <h1>Test</h1>

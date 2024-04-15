@@ -152,7 +152,18 @@ export const useStore = createSelectors(useStoreBase);
 //   }))
 // }
 
-// 初始化数据 ，使用 create 函数的 set 以及 get 方法进行绑定，最后 set initial state
+// 初始化数据 ，使用  set initial state ,
+
+// 注意：示例中使用了get()方法来获取当前状态中的salmon值，然后将其与传入的qty相加，并通过set方法更新状态。
+
+// 1. `addSalmon: (qty: number) => { set({ salmon: get().salmon + qty }) }`：
+//    - 这里使用了`get()`方法来获取当前状态中的`salmon`值，然后将其与传入的`qty`相加，并通过`set`方法更新状态。
+//
+// 2. `addSalmon: (qty: number) => { set((prev)=>{ salmon: prev.salmon  + qty }) }`：
+//    - 这里使用了`set`方法的另一种形式，接收一个回调函数作为参数。回调函数中的`prev`参数代表先前的状态，你可以从中获取先前的`salmon`值并与传入的`qty`相加。
+//
+// 主要区别在于第二种方法中，你可以直接访问先前的状态，而不需要显式调用`get`方法来获取先前的状态值。这种方式更加方便和直观，特别是在需要在更新状态时依赖先前状态的情况下。
+
 // import { create } from 'zustand'
 
 // // define types for state values and actions separately
